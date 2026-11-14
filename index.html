@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MAGO CREATION 10周年記念｜長坂真護 全国100ヶ所巡回個展</title>
-  <meta name="description" content="MAGO CREATION 10周年記念。長坂真護 全国100ヶ所巡回個展。スラム撲滅。地方から世界を変える。">
+  <title>Niji Circuit 10th｜全国100ヶ所ポップアップフェア（架空サイト）</title>
+  <meta name="description" content="架空ブランド「ニジ・サーキット」10周年。まちが、虹色になる。全国100ヶ所ポップアップフェア特設ページ。">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="images/favicon.svg" sizes="any">
   <link rel="apple-touch-icon" href="images/favicon.svg">
@@ -14,20 +14,16 @@
       theme: {
         extend: {
           colors: {
-            mago: {
-              ink: "#15120E",
-              black: "#0f0f0f",
-              charcoal: "#1a1a1a",
-              earth: "#8b7355",
-              sand: "#e8e0d4",
-              cream: "#f5f0e8",
-              accent: "#d4622a",
-              accentDark: "#b84e1a",
-              green: "#4a6741",
-              brass: "#C9A227",
-              ghanaRed: "#CE1126",
-              ghanaGold: "#FCD116",
-              ghanaGreen: "#006B3F",
+            niji: {
+              ink: "#1F2937",
+              cream: "#FFF8F0",
+              soft: "#FFF1E6",
+              coral: "#FF6B5B",
+              coralDark: "#E85A4B",
+              sun: "#FFC93C",
+              sky: "#3B9AE1",
+              mint: "#5ECFBF",
+              lilac: "#A78BFA",
             }
           },
           fontFamily: {
@@ -43,255 +39,229 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
   <style>
     html { scroll-behavior: smooth; }
-  .body-text { font-size: 1rem; line-height: 1.8; font-weight: 500; color: #1a1a1a; }
-  .body-text-on-dark { font-size: 1rem; line-height: 1.8; font-weight: 500; color: #ffffff; }
-  .section-label { letter-spacing: 0.2em; font-weight: 800; }
-  .texture-overlay {
-    pointer-events: none;
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    opacity: 0.35;
-  }
-  .timeline-line::before {
-    content: "";
-    position: absolute;
-    left: 1.125rem;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: linear-gradient(to bottom, #C9A227, #d4622a);
-  }
-  @media (min-width: 768px) {
-    .timeline-line::before { left: 50%; transform: translateX(-50%); }
-  }
-  .nav-open { display: flex !important; }
-
-  /* Hero: Ghana stripes + official art + hope star */
-  .hero-wrap { background-color: #15120E; }
-  .ghana-stripes {
-    background: linear-gradient(180deg,
-      #CE1126 0%, #CE1126 33.33%,
-      #FCD116 33.33%, #FCD116 66.66%,
-      #006B3F 66.66%, #006B3F 100%);
-    opacity: 0.92;
-  }
-  .hero-art {
-    background-image: url("images/hero-mainv.png");
-    background-size: cover;
-    background-position: center top;
-    opacity: 0.55;
-    mix-blend-mode: luminosity;
-  }
-  .hero-overlay {
-    background:
-      linear-gradient(160deg, rgba(15,12,8,.88) 0%, rgba(15,12,8,.72) 45%, rgba(15,12,8,.85) 100%),
-      linear-gradient(90deg, rgba(206,17,38,.25) 0%, transparent 30%, transparent 70%, rgba(0,107,63,.25) 100%);
-  }
-  .star-mark {
-    position: absolute;
-    width: min(55vw, 420px);
-    height: min(55vw, 420px);
-    top: 12%;
-    right: -8%;
-    opacity: 0.22;
-    animation: star-spin 48s linear infinite;
-    filter: drop-shadow(0 0 24px rgba(252,209,22,.45));
-    pointer-events: none;
-  }
-  @keyframes star-spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-  .star-mark svg { width: 100%; height: 100%; }
-  .ghana-band {
-    height: 6px;
-    background: linear-gradient(90deg, #CE1126, #FCD116, #006B3F);
-  }
-
-  /* 奥の作品を画面中央に固定、手前のサイトがスクロールでかぶさる */
-  .fixed-art-stage {
-    position: relative;
-    z-index: 1;
-  }
-  .fixed-art__layer {
-    position: fixed;
-    inset: 0;
-    z-index: 2;
-    pointer-events: none;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-  .fixed-art__layer.is-active {
-    visibility: visible;
-    opacity: 1;
-  }
-  .fixed-art__backdrop {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-      ellipse at center,
-      #FCD116 0%,
-      #f5e6a8 38%,
-      #C9A227 72%,
-      #a88418 100%
-    );
-  }
-  .fixed-art__frame {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5.5rem 1rem 3rem;
-  }
-  .fixed-art__img {
-    max-width: min(90vw, 860px);
-    max-height: min(68vh, 620px);
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    display: block;
-    box-shadow: 0 20px 50px rgba(21,18,14,.25);
-  }
-  .fixed-art__caption {
-    position: absolute;
-    left: 50%;
-    bottom: 14%;
-    transform: translateX(-50%);
-    text-align: center;
-    max-width: 90%;
-    pointer-events: none;
-  }
-  .fixed-art__caption-label {
-    font-size: 0.68rem;
-    letter-spacing: 0.22em;
-    font-weight: 800;
-    color: #b84e1a;
-  }
-  .fixed-art__caption-title {
-    font-family: "Noto Serif JP", Georgia, serif;
-    font-size: 1.15rem;
-    font-weight: 900;
-    color: #15120E;
-    margin-top: 0.35rem;
-  }
-  @media (min-width: 768px) {
-    .fixed-art__caption-title {
-      font-size: 1.35rem;
+    .body-text { font-size: 1rem; line-height: 1.8; font-weight: 500; color: #1F2937; }
+    .section-label { letter-spacing: 0.18em; font-weight: 800; }
+    .nav-open { display: flex !important; }
+    .rainbow-band {
+      height: 6px;
+      background: linear-gradient(90deg, #FF6B5B, #FFC93C, #5ECFBF, #3B9AE1, #A78BFA);
     }
-  }
-  .fixed-art__runway {
-    height: 88vh;
-    min-height: 340px;
-  }
-  .scroll-cover {
-    position: relative;
-    z-index: 10;
-  }
+    .hero-wrap { background-color: #FFF1E6; }
+    .hero-art {
+      background-image: url("images/hero.jpg");
+      background-size: cover;
+      background-position: center;
+      opacity: 0.55;
+    }
+    .hero-overlay {
+      background:
+        linear-gradient(160deg, rgba(255,248,240,.92) 0%, rgba(255,241,230,.78) 42%, rgba(255,107,91,.28) 100%),
+        linear-gradient(90deg, rgba(59,154,225,.18) 0%, transparent 40%, rgba(255,201,60,.22) 100%);
+    }
+    .blob {
+      position: absolute;
+      border-radius: 9999px;
+      filter: blur(40px);
+      opacity: 0.45;
+      pointer-events: none;
+      animation: floaty 14s ease-in-out infinite;
+    }
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-18px); }
+    }
+    .timeline-line::before {
+      content: "";
+      position: absolute;
+      left: 1.125rem;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, #FF6B5B, #3B9AE1);
+    }
+    @media (min-width: 768px) {
+      .timeline-line::before { left: 50%; transform: translateX(-50%); }
+    }
+
+    /* 奥固定・手前スクロール */
+    .fixed-art-stage { position: relative; z-index: 1; }
+    .fixed-art__layer {
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .fixed-art__layer.is-active { visibility: visible; opacity: 1; }
+    .fixed-art__backdrop {
+      position: absolute;
+      inset: 0;
+    }
+    /* 1枚目：昼・暖色（フード／マルシェ） */
+    .fixed-art-stage--warm .fixed-art__backdrop {
+      background: radial-gradient(ellipse at center, #FFE8A3 0%, #FFD0A8 42%, #FFB4A2 78%, #FF8F7A 100%);
+    }
+    /* 2枚目：夜・寒色（ライブ／ネオン）→ 切り替わりがはっきり見える */
+    .fixed-art-stage--cool .fixed-art__backdrop {
+      background: radial-gradient(ellipse at center, #7DD3FC 0%, #6366F1 45%, #312E81 82%, #1E1B4B 100%);
+    }
+    .fixed-art-stage--cool .fixed-art__caption {
+      background: rgba(30, 27, 75, 0.88);
+      border-color: #7DD3FC;
+    }
+    .fixed-art-stage--cool .fixed-art__caption-label {
+      color: #7DD3FC;
+    }
+    .fixed-art-stage--cool .fixed-art__caption-title {
+      color: #FFF8F0;
+    }
+    .fixed-art__frame {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5.5rem 1rem 3rem;
+    }
+    .fixed-art__img {
+      max-width: min(90vw, 860px);
+      max-height: min(68vh, 620px);
+      width: auto;
+      height: auto;
+      object-fit: cover;
+      border-radius: 1.25rem;
+      display: block;
+      box-shadow: 0 20px 50px rgba(31,41,55,.2);
+      border: 4px solid #fff;
+    }
+    .fixed-art__caption {
+      position: absolute;
+      left: 50%;
+      bottom: 12%;
+      transform: translateX(-50%);
+      text-align: center;
+      max-width: min(90%, 28rem);
+      padding: 0.85rem 1.25rem 1rem;
+      background: rgba(255, 248, 240, 0.94);
+      border: 2px solid #FFC93C;
+      border-radius: 1rem;
+      box-shadow: 0 12px 32px rgba(31, 41, 55, 0.22);
+    }
+    .fixed-art__caption-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      font-weight: 800;
+      color: #E85A4B;
+    }
+    .fixed-art__caption-title {
+      font-family: "Noto Serif JP", Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: #1F2937;
+      margin-top: 0.35rem;
+      line-height: 1.4;
+    }
+    @media (min-width: 768px) {
+      .fixed-art__caption-title { font-size: 1.4rem; }
+    }
+    .fixed-art__runway { height: 88vh; min-height: 340px; }
+    .scroll-cover { position: relative; z-index: 10; }
   </style>
 </head>
-<body class="font-sans text-mago-charcoal bg-mago-cream antialiased">
+<body class="font-sans text-niji-ink bg-niji-cream antialiased">
 
-  <div class="ghana-band" aria-hidden="true"></div>
+  <div class="rainbow-band" aria-hidden="true"></div>
 
-  <!-- Header -->
-  <header class="fixed top-[6px] inset-x-0 z-50 bg-mago-ink/95 backdrop-blur border-b border-mago-brass/30">
+  <header class="fixed top-[6px] inset-x-0 z-50 bg-white/90 backdrop-blur border-b border-niji-sun/40">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
-      <a href="#top" class="flex items-center gap-3">
-        <img src="images/logo-mago.svg" alt="MAGO" class="h-8 w-auto brightness-0 invert" width="120" height="32">
-        <span class="text-mago-brass font-black tracking-widest text-xs sm:text-sm hidden sm:inline">10TH TOUR</span>
+      <a href="#top" class="flex items-center gap-2">
+        <img src="images/logo.svg" alt="Niji Circuit" class="h-8 w-auto" width="180" height="32">
+        <span class="text-niji-coral font-black tracking-widest text-xs hidden sm:inline">10TH</span>
       </a>
-      <nav id="desktop-nav" class="hidden md:flex items-center gap-6 text-sm text-white font-semibold">
-        <a href="#about" class="hover:text-mago-brass transition">想い</a>
-        <a href="#story" class="hover:text-mago-brass transition">10年</a>
-        <a href="#impact" class="hover:text-mago-brass transition">活動</a>
-        <a href="#event" class="hover:text-mago-brass transition">開催概要</a>
-        <a href="#artworks" class="hover:text-mago-brass transition">新作</a>
-        <a href="#schedule" class="hover:text-mago-brass transition">スケジュール</a>
-        <a href="#contact" class="px-4 py-2 bg-mago-accent hover:bg-mago-accentDark text-white rounded transition font-bold">お問い合わせ</a>
+      <nav class="hidden md:flex items-center gap-6 text-sm text-niji-ink font-semibold">
+        <a href="#about" class="hover:text-niji-coral transition">想い</a>
+        <a href="#story" class="hover:text-niji-coral transition">10年</a>
+        <a href="#impact" class="hover:text-niji-coral transition">体験</a>
+        <a href="#event" class="hover:text-niji-coral transition">開催概要</a>
+        <a href="#goods" class="hover:text-niji-coral transition">グッズ</a>
+        <a href="#schedule" class="hover:text-niji-coral transition">スケジュール</a>
+        <a href="#contact" class="px-4 py-2 bg-niji-coral hover:bg-niji-coralDark text-white rounded-full transition font-bold">お問い合わせ</a>
       </nav>
-      <button id="menu-btn" type="button" class="md:hidden text-white p-2" aria-label="メニュー" aria-expanded="false">
+      <button id="menu-btn" type="button" class="md:hidden text-niji-ink p-2" aria-label="メニュー" aria-expanded="false">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
       </button>
     </div>
-    <nav id="mobile-nav" class="hidden md:hidden flex-col bg-mago-ink border-t border-mago-brass/20 px-4 py-4 gap-3 text-white font-semibold text-sm">
+    <nav id="mobile-nav" class="hidden md:hidden flex-col bg-white border-t border-niji-soft px-4 py-4 gap-3 text-niji-ink font-semibold text-sm">
       <a href="#about" class="mobile-link py-2">想い</a>
       <a href="#story" class="mobile-link py-2">10年</a>
-      <a href="#impact" class="mobile-link py-2">活動</a>
+      <a href="#impact" class="mobile-link py-2">体験</a>
       <a href="#event" class="mobile-link py-2">開催概要</a>
-      <a href="#artworks" class="mobile-link py-2">新作</a>
+      <a href="#goods" class="mobile-link py-2">グッズ</a>
       <a href="#schedule" class="mobile-link py-2">スケジュール</a>
-      <a href="#contact" class="mobile-link py-2 text-mago-brass font-bold">お問い合わせ</a>
+      <a href="#contact" class="mobile-link py-2 text-niji-coral font-bold">お問い合わせ</a>
     </nav>
   </header>
 
   <!-- Hero -->
   <section id="top" class="hero-wrap min-h-screen flex items-center relative overflow-hidden">
-    <div class="ghana-stripes absolute inset-0" aria-hidden="true"></div>
     <div class="hero-art absolute inset-0" aria-hidden="true"></div>
     <div class="hero-overlay absolute inset-0" aria-hidden="true"></div>
-    <div class="texture-overlay absolute inset-0 z-[1]" aria-hidden="true"></div>
-
-  <div class="star-mark z-[2]" aria-hidden="true">
-      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="50,8 61,38 92,38 67,57 78,88 50,69 22,88 33,57 8,38 39,38" fill="#FCD116"/>
-        <polygon points="50,18 58,40 82,40 63,55 71,77 50,63 29,77 37,55 18,40 42,40" fill="#15120E"/>
-      </svg>
-    </div>
+    <div class="blob w-64 h-64 bg-niji-sun top-24 -left-10" aria-hidden="true"></div>
+    <div class="blob w-72 h-72 bg-niji-sky bottom-10 -right-16" style="animation-delay:-4s" aria-hidden="true"></div>
+    <div class="blob w-48 h-48 bg-niji-mint top-1/2 right-1/4" style="animation-delay:-7s" aria-hidden="true"></div>
 
     <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 pt-28 pb-16 w-full">
-      <p class="text-mago-ghanaGold section-label text-xs sm:text-sm mb-4 drop-shadow-md">MAGO CREATION 10TH ANNIVERSARY</p>
-      <h1 class="font-display text-white text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-black leading-[1.12] max-w-4xl drop-shadow-[0_2px_12px_rgba(0,0,0,.6)]">
-        スラム撲滅。<br class="sm:hidden">地方から世界を変える。<br>
-        <span class="text-mago-ghanaGold">長坂真護</span><br class="md:hidden">
-        <span class="text-2xl sm:text-3xl md:text-4xl font-sans font-black text-white block mt-4">全国100ヶ所巡回個展</span>
+      <p class="text-niji-coral section-label text-xs sm:text-sm mb-4">NIJI CIRCUIT 10TH ANNIVERSARY</p>
+      <h1 class="font-display text-niji-ink text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] font-black leading-[1.15] max-w-4xl">
+        まちが、虹色になる。<br>
+        <span class="text-niji-coral">ニジ・サーキット</span>
+        <span class="text-2xl sm:text-3xl md:text-4xl font-sans font-black block mt-4">全国100ヶ所ポップアップフェア</span>
       </h1>
-      <p class="mt-6 text-white max-w-2xl text-base sm:text-lg leading-relaxed font-medium drop-shadow-md">
-        電子廃棄物をアートに。売上をガーナの現地へ還元する。<br class="hidden sm:block">
-        Still A BLACK STAR — 黒い星が、希望の光になる。
+      <p class="mt-6 text-niji-ink max-w-2xl text-base sm:text-lg leading-relaxed font-medium">
+        ハンドメイド・音楽・ごはん・ワークショップ。<br class="hidden sm:block">
+        10年分のワクワクを、あなたのまちへ届けます。
       </p>
       <div class="mt-8 flex flex-col sm:flex-row gap-4">
-        <a href="#event" class="inline-flex justify-center items-center px-8 py-4 bg-mago-accent hover:bg-mago-accentDark text-white font-black text-base rounded transition shadow-lg shadow-black/50">
+        <a href="#event" class="inline-flex justify-center items-center px-8 py-4 bg-niji-coral hover:bg-niji-coralDark text-white font-black text-base rounded-full transition shadow-lg shadow-niji-coral/30">
           開催概要を見る
         </a>
-        <a href="#story" class="inline-flex justify-center items-center px-8 py-4 border-2 border-mago-ghanaGold text-mago-ghanaGold hover:bg-mago-ghanaGold hover:text-mago-ink font-bold text-base rounded transition">
+        <a href="#story" class="inline-flex justify-center items-center px-8 py-4 border-2 border-niji-sky text-niji-sky hover:bg-niji-sky hover:text-white font-bold text-base rounded-full transition">
           10年の歩み
         </a>
       </div>
-      <div class="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl bg-mago-ink/70 rounded-xl p-4 border border-mago-brass/30 backdrop-blur-sm">
+      <div class="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl bg-white/80 rounded-2xl p-4 border border-niji-sun/50 shadow-sm">
         <div class="text-center">
-          <p class="text-3xl sm:text-4xl font-black text-mago-ghanaGold">10</p>
-          <p class="text-sm text-white font-semibold mt-1">周年</p>
+          <p class="text-3xl sm:text-4xl font-black text-niji-coral">10</p>
+          <p class="text-sm font-semibold mt-1">周年</p>
         </div>
-        <div class="text-center border-x border-white/20">
-          <p class="text-3xl sm:text-4xl font-black text-white">100</p>
-          <p class="text-sm text-white font-semibold mt-1">会場</p>
+        <div class="text-center border-x border-niji-soft">
+          <p class="text-3xl sm:text-4xl font-black text-niji-sky">100</p>
+          <p class="text-sm font-semibold mt-1">会場</p>
         </div>
-        <div class="text-center border-r border-white/20 sm:border-r-0">
-          <p class="text-3xl sm:text-4xl font-black text-white">102</p>
-          <p class="text-sm text-white font-semibold mt-1">現地雇用</p>
+        <div class="text-center border-r border-niji-soft sm:border-r-0">
+          <p class="text-3xl sm:text-4xl font-black text-niji-mint">48</p>
+          <p class="text-sm font-semibold mt-1">出店クリエイター</p>
         </div>
         <div class="text-center">
-          <p class="text-3xl sm:text-4xl font-black text-mago-brass">2030</p>
-          <p class="text-sm text-white font-semibold mt-1">1万人へ</p>
+          <p class="text-3xl sm:text-4xl font-black text-niji-lilac">∞</p>
+          <p class="text-sm font-semibold mt-1">笑顔の交差点</p>
         </div>
       </div>
-    </div>
-    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/80 animate-bounce z-10">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
     </div>
   </section>
 
-  <!-- 奥に作品固定：手前がスクロール（BLACK STAR） -->
-  <div class="fixed-art-stage" data-fixed-art-stage aria-label="代表作品ビジュアル">
+  <!-- Parallax 1：昼・暖色 -->
+  <div class="fixed-art-stage fixed-art-stage--warm" data-fixed-art-stage aria-label="マルシェビジュアル">
     <div class="fixed-art__layer" data-fixed-art-layer>
       <div class="fixed-art__backdrop" aria-hidden="true"></div>
       <div class="fixed-art__frame">
-        <img src="images/slider-01.png" alt="Still A BLACK STAR 作品（公式サイト素材）" class="fixed-art__img" width="1920" height="1080" decoding="async">
+        <img src="images/parallax-01.jpg" alt="明るいフードとマルシェの雰囲気" class="fixed-art__img" width="1400" height="900" decoding="async">
       </div>
       <div class="fixed-art__caption">
-        <p class="fixed-art__caption-label">STILL A BLACK STAR</p>
-        <p class="fixed-art__caption-title">黒い星が、希望の光になる。</p>
+        <p class="fixed-art__caption-label">DAYTIME MARKET</p>
+        <p class="fixed-art__caption-title">ごはんも、色も、まちも、ひとつになる。</p>
       </div>
     </div>
     <div class="fixed-art__runway" aria-hidden="true"></div>
@@ -302,265 +272,232 @@
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <p class="text-mago-accent font-bold tracking-widest text-sm mb-3">ABOUT</p>
-          <h2 class="font-display text-3xl sm:text-4xl font-bold text-mago-black mb-6">プロジェクトの想い</h2>
-          <div class="space-y-5 body-text leading-relaxed">
+          <p class="text-niji-coral font-bold tracking-widest text-sm mb-3">ABOUT</p>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold mb-6">プロジェクトの想い</h2>
+          <div class="space-y-5 body-text">
             <p>
-              <strong class="text-mago-black font-black">目的：</strong>
-              スラム撲滅、スラムでのサステナブルタウン建設と、スラムの人々のために——長坂真護の名前を全国にとどろかせる。
+              <strong class="font-black">目的：</strong>
+              クリエイターとまちの人が出会う場所をつくり、週末の空気をちょっと特別にする。
             </p>
             <p>
-              <strong class="text-mago-black font-black">メッセージ：</strong>
-              その希望の道しるべを地方で示し、地方のまちを元気にする。スラムのまちも、地方のまちも、変わる、変えられる。
+              <strong class="font-black">メッセージ：</strong>
+              大きな会場だけが正解じゃない。あなたのまちの公園や商店街でも、虹色の一日は始められる。
             </p>
-            <p class="border-l-4 border-mago-ghanaGold pl-4 text-mago-black font-semibold bg-mago-cream/80 py-3 pr-3 rounded-r">
-              美術館や百貨店だけでなく、あなたの近くで作品のパワーを感じてほしい。それが、この全国100ヶ所巡回個展の願いです。
+            <p class="border-l-4 border-niji-sun pl-4 font-semibold bg-niji-soft/80 py-3 pr-3 rounded-r">
+              ニジ・サーキットは架空の10周年キャンペーンです。ポートフォリオ用のオリジナル特設LPとして制作しています。
             </p>
-          </div>
-          <div class="mt-8 p-5 bg-mago-ink rounded-xl text-white">
-            <p class="text-mago-brass text-xs font-bold tracking-widest mb-2">2030 GOAL</p>
-            <p class="text-lg font-bold">アグボグブロシーで<strong class="text-mago-ghanaGold">10,000人</strong>の雇用を創出する。</p>
-            <p class="text-sm text-white/90 mt-2 font-medium">現在102名雇用・達成率1.02%（公式サイト掲載値・モック転記）</p>
           </div>
         </div>
         <div class="relative">
-          <img
-            src="images/about.png"
-            alt="長坂真護とアグボグブロシーの活動（公式サイト素材）"
-            class="rounded-lg shadow-2xl w-full aspect-[4/5] object-cover"
-            loading="lazy"
-          >
-          <div class="absolute -bottom-4 -left-4 bg-mago-ink text-white p-4 rounded-lg shadow-xl max-w-xs border border-mago-brass/40">
-            <p class="text-xs text-mago-brass font-bold mb-1">SUSTAINABLE CAPITALISM</p>
-            <p class="text-sm leading-snug font-medium">文化・経済・社会貢献の3軸が循環する、新しい資本主義。</p>
+          <img src="images/about.jpg" alt="明るいイベント会場の様子" class="rounded-2xl shadow-2xl w-full aspect-[4/5] object-cover" loading="lazy">
+          <div class="absolute -bottom-4 -left-4 bg-niji-sky text-white p-4 rounded-2xl shadow-xl max-w-xs">
+            <p class="text-xs font-bold mb-1 tracking-widest">LOCAL FIRST</p>
+            <p class="text-sm leading-snug font-medium">地元の出店・地元の来場者。にぎわいを循環させる設計。</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 10 Years Story -->
-  <section id="story" class="scroll-cover py-20 sm:py-28 bg-mago-ink text-white relative overflow-hidden">
-    <div class="texture-overlay absolute inset-0" aria-hidden="true"></div>
+  <!-- 10 years -->
+  <section id="story" class="scroll-cover py-20 sm:py-28 bg-niji-ink text-white relative overflow-hidden">
     <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
-      <p class="text-mago-brass section-label text-sm mb-3 text-center">10 YEARS</p>
-      <h2 class="font-display text-3xl sm:text-4xl font-black text-center mb-4">長坂真護の10年</h2>
-      <p class="body-text-on-dark text-center max-w-2xl mx-auto mb-10 text-base sm:text-lg">
-        2017年、ガーナ・アグボグブロシーとの出会いから。廃棄物をアートに変え、現地へ還元し続けてきた軌跡です。
+      <p class="text-niji-sun section-label text-sm mb-3 text-center">10 YEARS</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-black text-center mb-4">ニジ・サーキットの10年</h2>
+      <p class="text-center text-white/90 max-w-2xl mx-auto mb-10 text-base sm:text-lg font-medium">
+        小さなマルシェから始まった巡回イベントが、全国をつなぐ虹色の回路になりました。
       </p>
-      <div class="mb-12 max-w-3xl mx-auto rounded-xl overflow-hidden border border-mago-brass/30 shadow-2xl">
-        <img src="images/story.png" alt="長坂真護の活動ストーリー（公式サイト素材）" class="w-full aspect-video object-cover" loading="lazy">
+      <div class="mb-12 max-w-3xl mx-auto rounded-2xl overflow-hidden border-4 border-niji-sun/40 shadow-2xl">
+        <img src="images/story.jpg" alt="ステージと観客" class="w-full aspect-video object-cover" loading="lazy">
       </div>
       <div class="relative timeline-line space-y-10 max-w-3xl mx-auto">
         <div class="relative pl-12 md:pl-0 md:grid md:grid-cols-2 md:gap-8">
           <div class="md:text-right md:pr-8">
-            <span class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-9 h-9 rounded-full bg-mago-ghanaRed flex items-center justify-center text-xs font-bold z-10 text-white">17</span>
-            <p class="text-mago-brass font-bold">2017</p>
-            <p class="text-white text-base mt-1 font-medium">アグボグブロシーを訪問。電子廃棄物を燃やして生きる人々と出会う。MAGO CREATION設立。</p>
+            <span class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-9 h-9 rounded-full bg-niji-coral flex items-center justify-center text-xs font-bold z-10">16</span>
+            <p class="text-niji-sun font-bold">2016</p>
+            <p class="text-white text-base mt-1 font-medium">商店街の週末マルシェとしてスタート。出店8店舗。</p>
           </div>
         </div>
         <div class="relative pl-12 md:pl-0 md:grid md:grid-cols-2 md:gap-8">
           <div class="md:col-start-2 md:pl-8">
-            <span class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-9 h-9 rounded-full bg-mago-brass flex items-center justify-center text-xs font-bold z-10 text-mago-ink">18</span>
-            <p class="text-mago-brass font-bold">2018</p>
-            <p class="text-white text-base mt-1 font-medium">銀座個展で作品が高額成約。スラム初の学校「MAGO ART AND STUDY」設立。</p>
+            <span class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-9 h-9 rounded-full bg-niji-sky flex items-center justify-center text-xs font-bold z-10">19</span>
+            <p class="text-niji-sun font-bold">2019</p>
+            <p class="text-white text-base mt-1 font-medium">ライブステージ併設。県外巡回を開始。</p>
           </div>
         </div>
         <div class="relative pl-12 md:pl-0 md:grid md:grid-cols-2 md:gap-8">
           <div class="md:text-right md:pr-8">
-            <span class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-9 h-9 rounded-full bg-mago-earth flex items-center justify-center text-xs font-bold z-10">19</span>
-            <p class="text-mago-brass font-bold">2019</p>
-            <p class="text-white text-base mt-1 font-medium">電子廃棄物美術館「MAGO E-Waste Museum」開館。BONBO STARS プロジェクト始動。</p>
+            <span class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-9 h-9 rounded-full bg-niji-mint flex items-center justify-center text-xs font-bold z-10 text-niji-ink">22</span>
+            <p class="text-niji-sun font-bold">2022</p>
+            <p class="text-white text-base mt-1 font-medium">キッズワークショップ全国展開。来場者10万人突破。</p>
           </div>
         </div>
         <div class="relative pl-12 md:pl-0 md:grid md:grid-cols-2 md:gap-8">
           <div class="md:col-start-2 md:pl-8">
-            <span class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-9 h-9 rounded-full bg-mago-earth flex items-center justify-center text-xs font-bold z-10">22</span>
-            <p class="text-mago-brass font-bold">2022</p>
-            <p class="text-white text-base mt-1 font-medium">上野の森美術館で「Still A BLACK STAR」個展。ベストドレッサー賞受賞。</p>
-          </div>
-        </div>
-        <div class="relative pl-12 md:pl-0 md:grid md:grid-cols-2 md:gap-8">
-          <div class="md:text-right md:pr-8">
-            <span class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-9 h-9 rounded-full bg-mago-ghanaGold flex items-center justify-center text-xs font-bold z-10 ring-4 ring-mago-ghanaGold/30 text-mago-ink">26</span>
-            <p class="text-mago-brass font-bold">2026</p>
-            <p class="text-white text-base mt-1 font-bold">MAGO CREATION 10周年。全国100ヶ所巡回個展プロジェクト始動。</p>
+            <span class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-9 h-9 rounded-full bg-niji-sun flex items-center justify-center text-xs font-bold z-10 text-niji-ink ring-4 ring-niji-sun/30">26</span>
+            <p class="text-niji-sun font-bold">2026</p>
+            <p class="text-white text-base mt-1 font-bold">10周年。全国100ヶ所ポップアップフェア始動。</p>
           </div>
         </div>
       </div>
-      <p class="text-center mt-12 text-gray-400 text-sm">※年表は公開情報・公式サイトをもとにしたモック用の概要です</p>
+      <p class="text-center mt-12 text-white/50 text-sm">※年表は架空の設定です</p>
     </div>
   </section>
 
-  <!-- 奥に作品固定：手前がスクロール（#スラム撲滅） -->
-  <div class="fixed-art-stage" data-fixed-art-stage aria-label="スラム撲滅メッセージ">
+  <!-- Parallax 2：夜・寒色（1枚目と空気がガラッと変わる） -->
+  <div class="fixed-art-stage fixed-art-stage--cool" data-fixed-art-stage aria-label="ナイトライブビジュアル">
     <div class="fixed-art__layer" data-fixed-art-layer>
       <div class="fixed-art__backdrop" aria-hidden="true"></div>
       <div class="fixed-art__frame">
-        <img src="images/slider-02.png" alt="MAGO作品（公式サイト素材）" class="fixed-art__img" width="1920" height="1080" decoding="async">
+        <img src="images/parallax-02.jpg" alt="夜のライブステージと観客" class="fixed-art__img" width="1400" height="900" decoding="async">
       </div>
       <div class="fixed-art__caption">
-        <p class="fixed-art__caption-label">SHARE YOUR VOICE</p>
-        <p class="fixed-art__caption-title">#スラム撲滅</p>
+        <p class="fixed-art__caption-label">#まちが虹色になる</p>
+        <p class="fixed-art__caption-title">夜の写真をシェアして、次のまちへつなごう。</p>
       </div>
     </div>
     <div class="fixed-art__runway" aria-hidden="true"></div>
   </div>
 
-  <!-- Impact / Beyond Art -->
-  <section id="impact" class="scroll-cover py-20 sm:py-28 bg-mago-sand">
+  <!-- Impact -->
+  <section id="impact" class="scroll-cover py-20 sm:py-28 bg-niji-soft">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      <p class="text-mago-accent font-bold tracking-widest text-sm mb-3 text-center">BEYOND ART</p>
-      <h2 class="font-display text-3xl sm:text-4xl font-bold text-center text-mago-black mb-4">アートの向こう側で起きていること</h2>
-      <p class="text-center body-text max-w-2xl mx-auto mb-12 text-base">
-        作品の売上は、ガーナの現地でリサイクル・農業・EV・教育など、次の世代への仕組みづくりに還元されています。
-      </p>
+      <p class="text-niji-coral font-bold tracking-widest text-sm mb-3 text-center">EXPERIENCE</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-center mb-4">会場でできること</h2>
+      <p class="text-center body-text max-w-2xl mx-auto mb-12">買う・聴く・つくる・遊ぶ。一日中たのしめる4つのエリア。</p>
       <div class="grid sm:grid-cols-2 gap-6">
-        <article class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition group">
-          <img src="images/active-01.png" alt="リサイクル工場（公式サイト素材）" class="w-full aspect-[16/10] object-cover group-hover:scale-[1.02] transition duration-300" loading="lazy">
+        <article class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition">
+          <img src="images/active-01.jpg" alt="ハンドメイドブース" class="w-full aspect-[16/10] object-cover" loading="lazy">
           <div class="p-5">
-            <h3 class="font-bold text-mago-black text-lg">リサイクル工場</h3>
-            <p class="text-base text-mago-charcoal font-medium mt-2">電子廃棄物を回収し、MAGOブロックの原料となるプラスチックチップを生産。</p>
+            <h3 class="font-bold text-lg">クラフト市</h3>
+            <p class="mt-2 font-medium">作家もの雑貨・イラスト・テキスタイル。ここでしか出会えない一点もの。</p>
           </div>
         </article>
-        <article class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition group">
-          <img src="images/active-02.png" alt="農業事業（公式サイト素材）" class="w-full aspect-[16/10] object-cover group-hover:scale-[1.02] transition duration-300" loading="lazy">
+        <article class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition">
+          <img src="images/active-02.jpg" alt="フードエリア" class="w-full aspect-[16/10] object-cover" loading="lazy">
           <div class="p-5">
-            <h3 class="font-bold text-mago-black text-lg">農業事業</h3>
-            <p class="text-base text-mago-charcoal font-medium mt-2">モリンガ・コーヒー・プランテインなど、11エーカーの農園で栽培。</p>
+            <h3 class="font-bold text-lg">フードストリート</h3>
+            <p class="mt-2 font-medium">地元キッチンカーとスイーツ屋台。食べ歩きがメインの楽しみ方。</p>
           </div>
         </article>
-        <article class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition group">
-          <img src="images/active-03.png" alt="EV事業（公式サイト素材）" class="w-full aspect-[16/10] object-cover group-hover:scale-[1.02] transition duration-300" loading="lazy">
+        <article class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition">
+          <img src="images/active-03.jpg" alt="音楽ステージ" class="w-full aspect-[16/10] object-cover" loading="lazy">
           <div class="p-5">
-            <h3 class="font-bold text-mago-black text-lg">EV事業</h3>
-            <p class="text-base text-mago-charcoal font-medium mt-2">現地で設計・開発する電動スクーター「EQC O」など、モビリティへ投資。</p>
+            <h3 class="font-bold text-lg">ミニライブ</h3>
+            <p class="mt-2 font-medium">昼はアコースティック、夕方はダンスチューン。タイムテーブルは当日更新。</p>
           </div>
         </article>
-        <article class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition group">
-          <img src="images/active-04.png" alt="アートギャラリー（公式サイト素材）" class="w-full aspect-[16/10] object-cover group-hover:scale-[1.02] transition duration-300" loading="lazy">
+        <article class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition">
+          <img src="images/active-04.jpg" alt="キッズワークショップ" class="w-full aspect-[16/10] object-cover" loading="lazy">
           <div class="p-5">
-            <h3 class="font-bold text-mago-black text-lg">アートギャラリー</h3>
-            <p class="text-base text-mago-charcoal font-medium mt-2">スラム出身のアーティストを育成し、世界の美術館・百貨店へ届ける。</p>
+            <h3 class="font-bold text-lg">キッズ工房</h3>
+            <p class="mt-2 font-medium">親子で参加できる工作ブース。虹色バッジづくりが人気メニュー。</p>
           </div>
         </article>
-      </div>
-      <div class="mt-10 text-center">
-        <a href="https://magogallery.online/" target="_blank" rel="noopener noreferrer" class="text-mago-accent hover:text-mago-accentDark font-bold text-sm underline underline-offset-4">
-          公式サイト magogallery.online でくわしく見る →
-        </a>
       </div>
     </div>
   </section>
 
-  <!-- Event Info -->
-  <section id="event" class="py-20 sm:py-28 bg-white">
+  <!-- Event -->
+  <section id="event" class="scroll-cover py-20 sm:py-28 bg-white">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <p class="text-mago-accent font-bold tracking-widest text-sm mb-3">EVENT</p>
-          <h2 class="font-display text-3xl sm:text-4xl font-bold text-mago-black mb-6">開催概要</h2>
+          <p class="text-niji-coral font-bold tracking-widest text-sm mb-3">EVENT</p>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold mb-6">開催概要</h2>
           <ul class="space-y-5">
             <li class="flex gap-4">
-              <span class="flex-shrink-0 w-10 h-10 rounded-full bg-mago-cream flex items-center justify-center text-mago-accent font-bold text-sm">1</span>
+              <span class="flex-shrink-0 w-10 h-10 rounded-full bg-niji-soft flex items-center justify-center text-niji-coral font-bold text-sm">1</span>
               <div>
-                <h3 class="font-bold text-mago-black">開催日</h3>
-                <p class="body-text mt-1">各会場<strong class="font-black">金・土・日</strong>の3日間で開催します。</p>
+                <h3 class="font-bold">開催日</h3>
+                <p class="body-text mt-1">各会場<strong class="font-black">土・日</strong>の2日間（一部3日間）。</p>
               </div>
             </li>
             <li class="flex gap-4">
-              <span class="flex-shrink-0 w-10 h-10 rounded-full bg-mago-cream flex items-center justify-center text-mago-accent font-bold text-sm">2</span>
+              <span class="flex-shrink-0 w-10 h-10 rounded-full bg-niji-soft flex items-center justify-center text-niji-coral font-bold text-sm">2</span>
               <div>
-                <h3 class="font-bold text-mago-black">入場方法</h3>
-                <p class="body-text mt-1"><strong class="font-black">完全申込制</strong>です。下のボタンからお申し込みください。</p>
-                <a href="#" id="apply-link" class="inline-flex mt-3 px-6 py-3 bg-mago-ink hover:bg-mago-accent text-white text-base font-bold rounded transition">
-                  申込フォームへ
-                </a>
-                <p class="text-sm text-gray-600 mt-2">※ URLは後から Google Form に差し替え可能です</p>
+                <h3 class="font-bold">入場方法</h3>
+                <p class="body-text mt-1"><strong class="font-black">事前申込制</strong>（当日枠あり）。下のボタンからお申し込みください。</p>
+                <a href="#" class="inline-flex mt-3 px-6 py-3 bg-niji-ink hover:bg-niji-coral text-white text-base font-bold rounded-full transition">申込フォームへ</a>
+                <p class="text-sm text-gray-500 mt-2">※ モックのためリンクは未接続です</p>
               </div>
             </li>
             <li class="flex gap-4">
-              <span class="flex-shrink-0 w-10 h-10 rounded-full bg-mago-cream flex items-center justify-center text-mago-accent font-bold text-sm">3</span>
+              <span class="flex-shrink-0 w-10 h-10 rounded-full bg-niji-soft flex items-center justify-center text-niji-coral font-bold text-sm">3</span>
               <div>
-                <h3 class="font-bold text-mago-black">撮影 &amp; SNS</h3>
-                <p class="body-text mt-1">会場内の撮影は可能です。<strong class="font-black">#スラム撲滅</strong> でSNS投稿にご協力ください。</p>
+                <h3 class="font-bold">撮影 &amp; SNS</h3>
+                <p class="body-text mt-1">会場内の撮影OK。<strong class="font-black">#まちが虹色になる</strong> で投稿をお願いします。</p>
               </div>
             </li>
           </ul>
         </div>
-        <img
-          src="images/gallery-01.png"
-          alt="MAGO GALLERY（公式サイト素材）"
-          class="rounded-lg shadow-xl w-full aspect-video object-cover border-4 border-mago-ghanaGold/40"
-          loading="lazy"
-        >
+        <img src="images/event.jpg" alt="イベント会場のイメージ" class="rounded-2xl shadow-xl w-full aspect-video object-cover border-4 border-niji-sun/50" loading="lazy">
       </div>
     </div>
   </section>
 
-  <!-- Artworks -->
-  <section id="artworks" class="py-20 sm:py-28 bg-mago-ink text-white relative overflow-hidden">
-    <div class="texture-overlay absolute inset-0" aria-hidden="true"></div>
-    <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
-      <p class="text-mago-brass section-label text-sm mb-3 text-center">ARTWORKS</p>
-      <h2 class="font-display text-3xl sm:text-4xl font-black text-center mb-4">10周年記念・新作販売</h2>
-      <p class="body-text-on-dark text-center max-w-2xl mx-auto mb-12 text-base sm:text-lg">
-        電子ゴミをふんだんに使用し、ガーナ・スラムのゴミ削減に貢献。一般の方も気軽にサステナブルな活動に参加できる仕様です。
+  <!-- Goods -->
+  <section id="goods" class="scroll-cover py-20 sm:py-28 bg-niji-ink text-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <p class="text-niji-sun section-label text-sm mb-3 text-center">GOODS</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-black text-center mb-4">10周年記念グッズ</h2>
+      <p class="text-center text-white/90 max-w-2xl mx-auto mb-12 text-base sm:text-lg font-medium">
+        会場限定の記念アイテム。売り上げの一部は次回巡回のまちおこし基金へ。
       </p>
       <div class="grid md:grid-cols-3 gap-6">
-        <article class="bg-mago-charcoal border-2 border-white/20 rounded-xl overflow-hidden hover:border-mago-brass transition">
-          <img src="images/slider-01.png" alt="ベース作品（公式サイト作品画像）" class="w-full aspect-square object-cover bg-black" loading="lazy">
+        <article class="bg-white/5 border-2 border-white/20 rounded-2xl overflow-hidden hover:border-niji-sun transition">
+          <img src="images/product-01.jpg" alt="記念トート" class="w-full aspect-square object-cover" loading="lazy">
           <div class="p-6">
-            <h3 class="font-black text-xl">ベース作品</h3>
-            <p class="text-gray-200 text-base mt-1 font-medium">サインのみ など</p>
-            <p class="text-mago-ghanaGold text-3xl font-black mt-4">¥99,800<span class="text-base font-bold text-white">（税込）</span></p>
+            <h3 class="font-black text-xl">虹トート</h3>
+            <p class="text-white/80 text-base mt-1 font-medium">10周年ロゴ入り</p>
+            <p class="text-niji-sun text-3xl font-black mt-4">¥2,800</p>
           </div>
         </article>
-        <article class="bg-mago-charcoal border-2 border-mago-brass rounded-xl overflow-hidden shadow-lg shadow-mago-brass/20">
-          <div class="bg-mago-brass text-mago-ink text-sm font-black text-center py-2">おすすめ</div>
-          <img src="images/slider-02.png" alt="グラフィティ作品（公式サイト作品画像）" class="w-full aspect-square object-cover bg-black" loading="lazy">
+        <article class="bg-white/5 border-2 border-niji-coral rounded-2xl overflow-hidden shadow-lg shadow-niji-coral/20">
+          <div class="bg-niji-coral text-white text-sm font-black text-center py-2">おすすめ</div>
+          <img src="images/product-02.jpg" alt="アートプリント" class="w-full aspect-square object-cover" loading="lazy">
           <div class="p-6">
-            <h3 class="font-black text-xl">グラフィティあり</h3>
-            <p class="text-gray-200 text-base mt-1 font-medium">オリジナルグラフィティ入り</p>
-            <p class="text-mago-ghanaGold text-3xl font-black mt-4">¥149,800<span class="text-base font-bold text-white">（税込）</span></p>
+            <h3 class="font-black text-xl">ポスターセット</h3>
+            <p class="text-white/80 text-base mt-1 font-medium">会場ビジュアル3種</p>
+            <p class="text-niji-sun text-3xl font-black mt-4">¥4,500</p>
           </div>
         </article>
-        <article class="bg-mago-charcoal border-2 border-white/20 rounded-xl overflow-hidden hover:border-mago-brass transition">
-          <img src="images/slider-03.png" alt="作品展示イメージ（公式サイト素材）" class="w-full aspect-square object-cover bg-black" loading="lazy">
+        <article class="bg-white/5 border-2 border-white/20 rounded-2xl overflow-hidden hover:border-niji-sun transition">
+          <img src="images/product-03.jpg" alt="ワークショップキット" class="w-full aspect-square object-cover" loading="lazy">
           <div class="p-6">
-            <h3 class="font-black text-xl">額装代</h3>
-            <p class="text-gray-200 text-base mt-1 font-medium">共通オプション</p>
-            <p class="text-mago-ghanaGold text-3xl font-black mt-4">¥16,000<span class="text-base font-bold text-white">（税込・固定）</span></p>
+            <h3 class="font-black text-xl">工作キット</h3>
+            <p class="text-white/80 text-base mt-1 font-medium">おうちで虹バッジ</p>
+            <p class="text-niji-sun text-3xl font-black mt-4">¥1,800</p>
           </div>
         </article>
       </div>
-      <p class="text-center text-gray-400 text-sm mt-8">※価格・仕様はモック用の表示です。作品画像は公式サイト素材を使用しています。</p>
+      <p class="text-center text-white/50 text-sm mt-8">※価格・仕様は架空の表示です</p>
     </div>
   </section>
 
   <!-- Schedule -->
-  <section id="schedule" class="py-20 sm:py-28 bg-mago-cream">
+  <section id="schedule" class="scroll-cover py-20 sm:py-28 bg-niji-cream">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      <p class="text-mago-accent font-bold tracking-widest text-sm mb-3 text-center">SCHEDULE</p>
-      <h2 class="font-display text-3xl sm:text-4xl font-bold text-center text-mago-black mb-12">開催スケジュール</h2>
+      <p class="text-niji-coral font-bold tracking-widest text-sm mb-3 text-center">SCHEDULE</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-center mb-12">開催スケジュール</h2>
       <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-        <article class="bg-white rounded-xl p-6 sm:p-8 shadow-md border-l-4 border-mago-ghanaRed">
-          <p class="text-mago-ghanaRed font-black text-sm">第1回</p>
-          <h3 class="text-2xl font-black text-mago-black mt-2">9月18日(金) 〜 20日(日)</h3>
-          <p class="text-mago-charcoal font-semibold mt-2">会場名：<span class="text-mago-black font-black">未定</span></p>
-          <p class="body-text mt-4">金・土・日の3日間。完全申込制。</p>
+        <article class="bg-white rounded-2xl p-6 sm:p-8 shadow-md border-l-4 border-niji-coral">
+          <p class="text-niji-coral font-black text-sm">第1回</p>
+          <h3 class="text-2xl font-black mt-2">9月18日(金) 〜 20日(日)</h3>
+          <p class="font-semibold mt-2">会場：<span class="font-black">サンプル公園（架空）</span></p>
+          <p class="body-text mt-4">金・土・日の3日間。事前申込制。</p>
         </article>
-        <article class="bg-white rounded-xl p-6 sm:p-8 shadow-md border-l-4 border-mago-ghanaGreen">
-          <p class="text-mago-ghanaGreen font-black text-sm">第2回</p>
-          <h3 class="text-2xl font-black text-mago-black mt-2">9月25日(金) 〜 27日(日)</h3>
-          <p class="text-mago-charcoal font-semibold mt-2">会場名：<span class="text-mago-black font-black">未定</span></p>
-          <p class="body-text mt-4">金・土・日の3日間。完全申込制。</p>
+        <article class="bg-white rounded-2xl p-6 sm:p-8 shadow-md border-l-4 border-niji-sky">
+          <p class="text-niji-sky font-black text-sm">第2回</p>
+          <h3 class="text-2xl font-black mt-2">9月25日(金) 〜 27日(日)</h3>
+          <p class="font-semibold mt-2">会場：<span class="font-black">サンプル港倉庫（架空）</span></p>
+          <p class="body-text mt-4">金・土・日の3日間。事前申込制。</p>
         </article>
       </div>
-      <div class="mt-10 bg-mago-ink text-white rounded-xl p-8 sm:p-10 text-center max-w-4xl mx-auto border-2 border-mago-brass">
-        <p class="text-2xl sm:text-4xl font-display font-black text-mago-ghanaGold">残りの98ヶ所は順次公開！</p>
-        <p class="mt-3 text-white text-base sm:text-lg font-medium">開催地も募集中。あなたのまちで個展を開きませんか？</p>
-        <a href="#contact" class="inline-flex mt-6 px-8 py-4 bg-mago-accent hover:bg-mago-accentDark text-white font-black rounded transition text-base">
+      <div class="mt-10 bg-white text-niji-ink rounded-2xl p-8 sm:p-10 text-center max-w-4xl mx-auto border-2 border-niji-sun shadow-sm">
+        <p class="text-2xl sm:text-4xl font-display font-black text-niji-coral">残りの98ヶ所は順次公開！</p>
+        <p class="mt-3 text-base sm:text-lg font-medium">開催地も募集中。あなたのまちでポップアップを開きませんか？</p>
+        <a href="#contact" class="inline-flex mt-6 px-8 py-4 bg-niji-coral hover:bg-niji-coralDark text-white font-black rounded-full transition text-base">
           会場提供・応募はこちら
         </a>
       </div>
@@ -568,49 +505,46 @@
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="py-20 sm:py-28 bg-white">
+  <section id="contact" class="scroll-cover py-20 sm:py-28 bg-white">
     <div class="max-w-2xl mx-auto px-4 sm:px-6">
-      <p class="text-mago-accent font-bold tracking-widest text-sm mb-3 text-center">CONTACT</p>
-      <h2 class="font-display text-3xl sm:text-4xl font-bold text-center text-mago-black mb-4">お問い合わせ</h2>
-      <p class="text-center body-text mb-10">個展会場の提供・応募、または一般的なお問い合わせを受け付けています。</p>
+      <p class="text-niji-coral font-bold tracking-widest text-sm mb-3 text-center">CONTACT</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-center mb-4">お問い合わせ</h2>
+      <p class="text-center body-text mb-10">会場提供・出店応募、または一般的なお問い合わせ（モックのため送信未接続）。</p>
       <form id="contact-form" class="space-y-5" action="#" method="post" onsubmit="return false;">
         <div>
-          <label for="name" class="block text-base font-bold text-mago-black mb-2">お名前 <span class="text-mago-accent">*</span></label>
-          <input type="text" id="name" name="name" required placeholder="山田 太郎" class="w-full px-4 py-3 border-2 border-mago-sand rounded-lg focus:outline-none focus:ring-2 focus:ring-mago-accent focus:border-mago-accent bg-white text-mago-black text-base transition">
+          <label for="name" class="block text-base font-bold mb-2">お名前 <span class="text-niji-coral">*</span></label>
+          <input type="text" id="name" name="name" required placeholder="山田 太郎" class="w-full px-4 py-3 border-2 border-niji-soft rounded-xl focus:outline-none focus:ring-2 focus:ring-niji-coral focus:border-niji-coral bg-white text-base">
         </div>
         <div>
-          <label for="email" class="block text-base font-bold text-mago-black mb-2">メールアドレス <span class="text-mago-accent">*</span></label>
-          <input type="email" id="email" name="email" required placeholder="example@email.com" class="w-full px-4 py-3 border-2 border-mago-sand rounded-lg focus:outline-none focus:ring-2 focus:ring-mago-accent focus:border-mago-accent bg-white text-mago-black text-base transition">
+          <label for="email" class="block text-base font-bold mb-2">メールアドレス <span class="text-niji-coral">*</span></label>
+          <input type="email" id="email" name="email" required placeholder="example@email.com" class="w-full px-4 py-3 border-2 border-niji-soft rounded-xl focus:outline-none focus:ring-2 focus:ring-niji-coral focus:border-niji-coral bg-white text-base">
         </div>
         <div>
-          <label for="type" class="block text-base font-bold text-mago-black mb-2">お問い合わせ種別 <span class="text-mago-accent">*</span></label>
-          <select id="type" name="type" required class="w-full px-4 py-3 border-2 border-mago-sand rounded-lg focus:outline-none focus:ring-2 focus:ring-mago-accent focus:border-mago-accent bg-white text-mago-black text-base transition">
+          <label for="type" class="block text-base font-bold mb-2">お問い合わせ種別 <span class="text-niji-coral">*</span></label>
+          <select id="type" name="type" required class="w-full px-4 py-3 border-2 border-niji-soft rounded-xl focus:outline-none focus:ring-2 focus:ring-niji-coral focus:border-niji-coral bg-white text-base">
             <option value="">選択してください</option>
-            <option value="venue">個展会場の応募</option>
-            <option value="other">その他のお問い合わせ</option>
+            <option value="venue">会場の応募</option>
+            <option value="booth">出店の応募</option>
+            <option value="other">その他</option>
           </select>
         </div>
         <div>
-          <label for="message" class="block text-base font-bold text-mago-black mb-2">メッセージ本文 <span class="text-mago-accent">*</span></label>
-          <textarea id="message" name="message" required rows="5" placeholder="お問い合わせ内容をご記入ください" class="w-full px-4 py-3 border-2 border-mago-sand rounded-lg focus:outline-none focus:ring-2 focus:ring-mago-accent focus:border-mago-accent bg-white text-mago-black text-base transition resize-y"></textarea>
+          <label for="message" class="block text-base font-bold mb-2">メッセージ本文 <span class="text-niji-coral">*</span></label>
+          <textarea id="message" name="message" required rows="5" placeholder="お問い合わせ内容をご記入ください" class="w-full px-4 py-3 border-2 border-niji-soft rounded-xl focus:outline-none focus:ring-2 focus:ring-niji-coral focus:border-niji-coral bg-white text-base resize-y"></textarea>
         </div>
-        <button type="submit" id="submit-btn" class="w-full py-4 bg-mago-accent hover:bg-mago-accentDark text-white font-black text-lg rounded-lg transition shadow-lg">
+        <button type="submit" class="w-full py-4 bg-niji-coral hover:bg-niji-coralDark text-white font-black text-lg rounded-full transition shadow-lg">
           送信する
         </button>
-        <p id="form-note" class="text-sm text-gray-600 text-center font-medium">※ このフォームはモック用です。送信処理は未接続です。</p>
+        <p id="form-note" class="text-sm text-gray-500 text-center font-medium">※ このフォームはモック用です。送信処理は未接続です。</p>
       </form>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="bg-mago-ink text-gray-300 py-10 border-t-2 border-mago-brass/30">
+  <footer class="bg-niji-ink text-gray-300 py-10 border-t-4 border-niji-sun">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
-      <img src="images/logo-mago.svg" alt="MAGO" class="h-10 w-auto mx-auto brightness-0 invert opacity-90" width="140" height="40">
-      <p class="text-base mt-4">
-        <a href="https://magogallery.online/" target="_blank" rel="noopener noreferrer" class="text-white hover:text-mago-brass font-semibold transition">magogallery.online</a>
-      </p>
-      <p class="text-sm mt-6 text-gray-400">&copy; <span id="year"></span> MAGO CREATION Inc. All Rights Reserved.</p>
-      <p class="text-sm mt-2 text-gray-500">本ページはモック（たたき台）です。画像は magogallery.online 公式素材をモック用に使用しています。</p>
+      <img src="images/logo.svg" alt="Niji Circuit" class="h-9 w-auto mx-auto brightness-0 invert opacity-90" width="160" height="36">
+      <p class="text-sm mt-6 text-gray-400">&copy; <span id="year"></span> Niji Circuit（架空ブランド）. Portfolio demo.</p>
+      <p class="text-sm mt-2 text-gray-500">本ページはポートフォリオ用の架空サイトです。実在の団体・イベントとは関係ありません。写真は Unsplash のフリー素材です。</p>
     </div>
   </footer>
 
@@ -619,7 +553,6 @@
       var menuBtn = document.getElementById("menu-btn");
       var mobileNav = document.getElementById("mobile-nav");
       var mobileLinks = document.querySelectorAll(".mobile-link");
-
       if (menuBtn && mobileNav) {
         menuBtn.addEventListener("click", function () {
           var open = mobileNav.classList.toggle("nav-open");
@@ -634,10 +567,8 @@
           });
         });
       }
-
       var yearEl = document.getElementById("year");
       if (yearEl) yearEl.textContent = String(new Date().getFullYear());
-
       var form = document.getElementById("contact-form");
       var formNote = document.getElementById("form-note");
       if (form) {
@@ -645,22 +576,10 @@
           e.preventDefault();
           if (formNote) {
             formNote.textContent = "送信ありがとうございます。（モックのため、実際には送信されていません）";
-            formNote.classList.remove("text-gray-600");
-            formNote.classList.add("text-mago-accent", "font-medium");
+            formNote.classList.add("text-niji-coral", "font-medium");
           }
         });
       }
-
-      var header = document.querySelector("header");
-      window.addEventListener("scroll", function () {
-        if (!header) return;
-        if (window.scrollY > 40) {
-          header.classList.add("shadow-lg");
-        } else {
-          header.classList.remove("shadow-lg");
-        }
-      }, { passive: true });
-
       var artStages = document.querySelectorAll("[data-fixed-art-stage]");
       if (artStages.length && "IntersectionObserver" in window) {
         artStages.forEach(function (stage) {
@@ -668,13 +587,10 @@
           if (!layer) return;
           var observer = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
-              if (entry.isIntersecting) {
-                layer.classList.add("is-active");
-              } else {
-                layer.classList.remove("is-active");
-              }
+              if (entry.isIntersecting) layer.classList.add("is-active");
+              else layer.classList.remove("is-active");
             });
-          }, { threshold: 0, rootMargin: "0px 0px 0px 0px" });
+          }, { threshold: 0 });
           observer.observe(stage);
         });
       }
